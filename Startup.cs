@@ -56,6 +56,11 @@ namespace WebApplication
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "convert_currencies",
+                    template: "{currency}/convert/{*others}",
+                    defaults:new{controller="currencies",action="View"});
+                
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
