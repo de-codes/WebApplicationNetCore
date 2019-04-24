@@ -1,8 +1,37 @@
-﻿@{
+﻿@model IndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index">
+            <div class="form-group">
+                <label asp-for="NewUser"></label>
+                <input class="form-control" asp-for="NewUser" />
+                <span asp-validation-for="NewUser"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h4>Number of users: @Model.ExistingUsers.Count</h4>
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            @foreach (var user in Model.ExistingUsers)
+            {
+                <li >
+                    <a class="btn btn-info"
+                       asp-action="ViewUser" 
+                       asp-route-userName="@user">View</a>
+                    <span>@user</span>
+                    
+                </li>
+                <br/>
+            }
+        </ul>
+    </div>
 </div>
